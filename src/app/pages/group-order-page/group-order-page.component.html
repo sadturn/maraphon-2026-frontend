@@ -1,9 +1,38 @@
 <main class="page">
-  <h1>Group Pre-Order</h1>
+  <header class="header">
+    <h1 class="heading">Group Pre-Order</h1>
+
+    <ul class="meta">
+      <li class="meta-item">
+        <img src="assets/svg/location-green.svg" alt="" aria-hidden="true" width="16" height="16" />
+        <span class="visually-hidden">Address:</span>
+        {{ invite().LocationAddress }}
+      </li>
+      <li class="meta-item">
+        <img src="assets/svg/calendar-green.svg" alt="" aria-hidden="true" width="16" height="16" />
+        <span class="visually-hidden">Date:</span>
+        <time [attr.datetime]="invite().StartTime">{{ invite().StartTime | date: 'mediumDate' }}</time>
+      </li>
+      <li class="meta-item">
+        <img src="assets/svg/clock-green.svg" alt="" aria-hidden="true" width="16" height="16" />
+        <span class="visually-hidden">Time:</span>
+        {{ invite().StartTime | date: 'HH:mm' }} – {{ invite().EndTime | date: 'HH:mm' }}
+      </li>
+      <li class="meta-item">
+        <img src="assets/svg/people-green.svg" alt="" aria-hidden="true" width="16" height="16" />
+        {{ participants().length }} of {{ invite().MaxGuestCount }} guests
+      </li>
+    </ul>
+  </header>
 
   <ul class="participants">
     @for (person of participants(); track person.id) {
       <li><app-participant-card [participant]="person" /></li>
     }
   </ul>
+
+  <p class="grand-total">
+    <span>Grand Total</span>
+    <span class="grand-total-value">{{ total() | currency }}</span>
+  </p>
 </main>

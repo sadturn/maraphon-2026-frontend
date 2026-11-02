@@ -5,6 +5,7 @@ import { Participant } from '@app/models/group-orders/participant.model';
 @Component({
   selector: 'app-participant-card',
   templateUrl: './participant-card.component.html',
+  styleUrl: './participant-card.component.scss',
   changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CurrencyPipe],
 })
